@@ -80,6 +80,13 @@ h2 { font-size: 1rem; margin: 1.5rem 0 .5rem; color: var(--muted); text-transfor
    bar's height, giving the menu buttons more room around them */
 .nav strong { font-size: 1.5rem; font-weight: 700; }
 .nav .spacer { flex: 1; }
+/* org logo link, first in .nav (before the title) -- the gap between it and the
+   title comes from .nav's own flex gap, nothing extra needed here. */
+.org-logo {
+  display: inline-flex; align-items: center; justify-content: center;
+  flex: none; width: 2rem; height: 2rem; border-radius: 6px;
+}
+.org-logo:hover { background: var(--head-bg); }
 /* the status line at the bottom of the window (as in many desktop apps) -- not
    .app, but a direct child of body: its own horizontal padding (.app doesn't give it
    any outside itself), fixed -- always visible regardless of page scroll */

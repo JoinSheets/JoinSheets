@@ -184,6 +184,15 @@
     return el('div', { class: 'quick-panel' }, field, dropdown, limitRow);
   };
 
+  // The org mark (three overlapping rounded squares -- joinsheets.github.io's own
+  // logo, kept in its own colors rather than currentColor like the other icons here,
+  // so it reads as a brand mark rather than a UI control).
+  var ORG_LOGO_SVG =
+    '<svg viewBox="0 0 100 100" width="20" height="20" aria-hidden="true" focusable="false">'
+    + '<rect x="16" y="14" width="50" height="50" rx="9" ry="9" fill="#2b2b2e"/>'
+    + '<rect x="38" y="18" width="42" height="42" rx="9" ry="9" fill="#9a9a9e"/>'
+    + '<rect x="26" y="42" width="38" height="38" rx="9" ry="9" fill="#d98f2b"/></svg>';
+
   // Funnel icon -- the same one used by the column quick-filter apply button in
   // view-table.js (reused from there via ViewCommon.FUNNEL_SVG -- one visual language
   // for "this is about filtering").
@@ -293,6 +302,10 @@
     // name: a blank preset (nothing selected) shows an empty string, not a placeholder
     // -- see store.js::normalizePreset.
     return el('header', { class: 'nav' },
+      el('a', {
+        class: 'org-logo', href: 'https://joinsheets.github.io/',
+        target: '_blank', rel: 'noopener', title: 'JoinSheets documentation & site'
+      }, el('span', { html: ORG_LOGO_SVG })),
       el('strong', {}, (state.preset && state.preset.description) || ''),
       el('span', { class: 'spacer' }),
       menu
