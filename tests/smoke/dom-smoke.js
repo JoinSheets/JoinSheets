@@ -94,6 +94,11 @@ context.FileReader = function () {};
 context.alert = (msg) => { console.log('[alert]', msg); };
 context.setTimeout = setTimeout;
 context.navigator = {};
+// window.addEventListener('storage', ...) -- main.js's cross-tab theme sync. Never
+// actually fires here (nothing in this stub emulates another tab writing
+// localStorage), just needs to exist so main.js's setup call doesn't throw.
+context.addEventListener = () => {};
+context.removeEventListener = () => {};
 
 const localStorageStore = {};
 context.localStorage = {
@@ -213,7 +218,8 @@ setTimeout(() => {
     const expectedExports = [
       'el', 'joinSources', 'matchCondition', 'parseNum', 'parseDate', 'toCsv',
       'createStore', 'reducer', 'normalizePreset', 'opSelect', 'viewNav', 'viewBuild',
-      'viewTableShell', 'renderGrid', 'store', 'buildDataset', 'exportXls', 'exportCsv'
+      'viewTableShell', 'renderGrid', 'store', 'buildDataset', 'exportXls', 'exportCsv',
+      'renderSettingsPanel', 'applyTheme', 'THEMES', 'prefs'
     ];
     const missing = expectedExports.filter((k) => typeof DS_APP[k] === 'undefined');
     assert.deepEqual(missing, [], 'missing exports on window.DS_APP: ' + missing.join(', '));
