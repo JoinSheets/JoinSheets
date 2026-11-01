@@ -311,24 +311,30 @@
             class: 'gear', onclick: function () { d({ type: 'route/set', route: 'build' }); }
           }, 'To Data →')
         ];
-    // The title is the current preset's description (preset.description), not the app
-    // name: a blank preset (nothing selected) shows an empty string, not a placeholder
-    // -- see store.js::normalizePreset.
+    // Two rows: logo + "JoinSheets" + the route buttons + Settings on top (the
+    // app's own chrome), the current preset's description below it (what you're
+    // actually looking at right now -- a blank preset shows no second row at all,
+    // not an empty one, see store.js::normalizePreset).
     return el('header', { class: 'nav' },
-      el('a', {
-        class: 'org-logo', href: 'https://joinsheets.github.io/',
-        target: '_blank', rel: 'noopener', title: 'JoinSheets documentation & site'
-      }, el('span', { html: ORG_LOGO_SVG })),
-      el('strong', {}, (state.preset && state.preset.description) || ''),
-      el('span', { class: 'spacer' }),
-      menu,
-      // Settings -- reachable from every screen (unlike the route-specific buttons
-      // above), always the rightmost item.
-      el('button', {
-        class: 'gear settings-toggle' + (state.settingsOpen ? ' active' : ''),
-        title: 'Settings', 'aria-label': 'Settings',
-        onclick: function () { d({ type: 'settings/toggle' }); }
-      }, el('span', { html: SETTINGS_SVG }))
+      el('div', { class: 'nav-row' },
+        el('a', {
+          class: 'org-logo', href: 'https://joinsheets.github.io/',
+          target: '_blank', rel: 'noopener', title: 'JoinSheets documentation & site'
+        }, el('span', { html: ORG_LOGO_SVG })),
+        el('strong', {}, 'JoinSheets'),
+        el('span', { class: 'spacer' }),
+        menu,
+        // Settings -- reachable from every screen (unlike the route-specific
+        // buttons above), always the rightmost item.
+        el('button', {
+          class: 'gear settings-toggle' + (state.settingsOpen ? ' active' : ''),
+          title: 'Settings', 'aria-label': 'Settings',
+          onclick: function () { d({ type: 'settings/toggle' }); }
+        }, el('span', { html: SETTINGS_SVG }))
+      ),
+      (state.preset && state.preset.description)
+        ? el('div', { class: 'nav-row' }, el('strong', {}, state.preset.description))
+        : null
     );
   };
 
