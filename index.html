@@ -8,10 +8,11 @@
   <!--
     The active theme -- swapped at runtime by theme.js (its href is the one thing
     that changes; styles.css itself carries no colors, every rule reads a
-    var(--...) one of these files defines). "auto" (follows the OS/browser's
-    prefers-color-scheme) until a saved choice says otherwise -- see main.js.
+    var(--...) one of these files defines). "compose" (matching
+    joinsheets.github.io's own look) until a saved choice says otherwise -- see
+    main.js/store.js, and theme.js for the rest of the registry.
   -->
-  <link id="theme-style" rel="stylesheet" href="themes/auto.css">
+  <link id="theme-style" rel="stylesheet" href="themes/compose.css">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>

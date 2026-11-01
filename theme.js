@@ -15,11 +15,15 @@
   }
 })(typeof window !== 'undefined' ? window : this, function () {
 
+  // "compose" first -- the default (index.html's initial <link>, store.js's initial
+  // state, and findTheme's own fallback below all agree: THEMES[0] is the default),
+  // matching joinsheets.github.io's own look out of the box. Also listed first in
+  // the settings panel, for the same reason.
   var THEMES = [
+    { id: 'compose', name: 'Compose', file: 'themes/compose.css' },
     { id: 'auto', name: 'Auto (system)', file: 'themes/auto.css' },
     { id: 'light', name: 'Light', file: 'themes/light.css' },
-    { id: 'dark', name: 'Dark', file: 'themes/dark.css' },
-    { id: 'compose', name: 'Compose', file: 'themes/compose.css' }
+    { id: 'dark', name: 'Dark', file: 'themes/dark.css' }
   ];
 
   var findTheme = function (id) {
@@ -27,8 +31,8 @@
   };
 
   // Swaps the <link id="theme-style"> href -- the one DOM touch point. Falls back to
-  // "auto" for an id that doesn't match anything (e.g. a stale localStorage value
-  // from before a theme was renamed/removed).
+  // THEMES[0] (today, "compose") for an id that doesn't match anything (e.g. a stale
+  // localStorage value from before a theme was renamed/removed).
   var applyTheme = function (id) {
     var link = document.getElementById('theme-style');
     if (link) link.href = findTheme(id).file;

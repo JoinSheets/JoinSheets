@@ -209,11 +209,13 @@
     // per-dataset workflow thing, so it reads from `prefs` (localStorage, see
     // effects.js) rather than `storage` (sessionStorage) above. Any string is
     // accepted here and normalized later, at the point a theme is actually
-    // applied (theme.js::findTheme falls back to "auto") -- keeps this file
-    // free of a dependency on the theme registry itself.
+    // applied (theme.js::findTheme falls back to THEMES[0], "compose") -- keeps
+    // this file free of a dependency on the theme registry itself. "compose"
+    // (not "auto") matches index.html's own initial <link>, and
+    // joinsheets.github.io's look.
     theme: (function () {
       var saved = prefs.get('theme');
-      return typeof saved === 'string' && saved ? saved : 'auto';
+      return typeof saved === 'string' && saved ? saved : 'compose';
     })(),
     settingsOpen: false      // the settings panel (gear icon, top right) is expanded
   };
