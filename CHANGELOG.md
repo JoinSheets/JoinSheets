@@ -6,10 +6,30 @@ All notable changes to JoinSheets are documented here. Dates are release dates (
 
 ## Planned next
 
-Multi-language support for the app's own UI. The settings screen already has a
-placeholder for it (Settings → Language) -- the translations themselves, and the
-string extraction they need across the whole UI, are a separate, not-yet-started
-release.
+Formula handling cleanup: fix known bugs in formula parsing/evaluation and in
+value-type coercion (numbers/dates/booleans). See
+[#1](https://github.com/JoinSheets/JoinSheets/issues/1).
+
+## [0.3.0b1] - 2026-11-15
+
+### Added
+
+- Multi-language UI support (English/Russian): every screen, button, tooltip,
+  and error message -- including formula-parse errors -- is now translated.
+  Settings → Language switches it live across every open tab, the same way
+  the theme switcher already worked. Closes the placeholder noted in
+  0.2.0b1.
+- An "About" section in Settings: the running version (read from index.html's
+  own version tag, so it can't drift out of sync) and a link to
+  joinsheets.github.io.
+
+### Changed
+
+- The top nav row is now two flex blocks -- logo + "JoinSheets" brand, then
+  the action buttons -- that wrap as whole units on a narrow screen, instead
+  of wrapping wherever it happened to run out of width. The current preset's
+  description moved to its own row below the buttons (omitted, not blank,
+  when there is no description).
 
 ## [0.2.0b1] - 2026-11-01
 
