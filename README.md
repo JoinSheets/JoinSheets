@@ -2,7 +2,7 @@
 
 **English** · [Русский](README.ru.md)
 
-![version](https://img.shields.io/badge/version-0.2.0b1-blue)
+![version](https://img.shields.io/badge/version-0.3.0b1-blue)
 ![license](https://img.shields.io/badge/license-Apache--2.0-green)
 ![status](https://img.shields.io/badge/status-beta-yellow)
 
